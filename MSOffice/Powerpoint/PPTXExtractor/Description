@@ -1,0 +1,34 @@
+ Job details
+Create a Python script which can extract the notes of the PowerPoint slides
+Scripting & Automation
+Posted 1 hour ago
+
+Specialized profiles can help you better highlight your expertise when submitting proposals to jobs like these. Create a specialized profile.
+Worldwide
+I have a powerpoint slide with notes on each slide.
+
+And for each slide of the powerpoint, i have a serial number on the top left, PPTxxxx
+
+What I wanted to do is to extract the notes on each slide and output it into a UTF-8 txt file and name that file according to the PPTxxxx number.
+
+Per attached is the powerpoint file for your reference.
+
+$20.00
+Fixed-price
+
+    Entry level
+    I am looking for freelancers with the lowest rates
+
+Attachment
+
+    HKSIP1E.pptx (769 KB) 
+
+    Project Type:  One-time project
+
+You will be asked to answer the following questions when submitting a proposal:
+
+    What library will you use?  -- We can use tika library (Apache Library supports more format) or python-pptx
+    What would be the most difficult part/challenge for you?
+    Whats your experience with powerpoint?
+    Include a link to your GitHub profile and/or website
+    Describe your recent experience with similar projects 

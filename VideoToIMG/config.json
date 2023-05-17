@@ -1,0 +1,6 @@
+{
+    "input_folder": "Input",
+    "output_folder": "Output",
+    "accepted_formats": [".mp4"],
+    "output_format": ".JPG"
+}

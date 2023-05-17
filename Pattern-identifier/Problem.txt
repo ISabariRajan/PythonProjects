@@ -1,0 +1,19 @@
+I am looking for an AI software that can help me find keywords patterns from sentences. The AI will use a custom data source to find the keywords. I am open to suggestions on the ideal skills and experience for this job.
+
+Purpose:
+I want the software to find two or more keyword patterns and record the number of times it finds it within the data.
+
+What is allowed:
+This software is for personal use and you can build one from scratch or use an open source one just tweak it to my liking.
+
+Language:
+Python / Java
+
+My Windows edition:
+- Windows 11 home
+- 64-bit operating system, x64-based processor
+- 11th Gen Intel(R) Core(TM) i3-1115G4 @ 3.00GHz 2.90 GHz
+- 8.00 GB (7.65 GB usable)
+
+Here is me explaining what I want it's only 3 minutes
+https://youtu.be/KdJEf6MoXtk
