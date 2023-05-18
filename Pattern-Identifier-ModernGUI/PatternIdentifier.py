@@ -38,7 +38,7 @@ class App(customtkinter.CTk):
     keyword_list = {}
     keyword_elements = {}
 
-    top_keywords = []
+    # top_keywords = []
     MAX_KEYWORDS = 20
 
     def __init__(self):
@@ -96,8 +96,8 @@ class App(customtkinter.CTk):
         self.text_area.grid(row=0, column=1, sticky="nsew", rowspan=5, **self.styles.pad_20)
         self.text_area.bind("<KeyRelease>", lambda event: self.search_keyword_in_txtarea())
 
-        self.progressbar = customtkinter.CTkProgressBar(self, height=30, mode="determinate")
-        self.progressbar.grid(row=5, column=1, padx=(20, 10), pady=(10, 10), sticky="ew")
+        # self.progressbar = customtkinter.CTkProgressBar(self, height=30, mode="determinate")
+        # self.progressbar.grid(row=5, column=1, padx=(20, 10), pady=(10, 10), sticky="ew")
 
     def pattern_generation_type_onchange(self):
         generation_type = self.pattern_generation_type.get()
@@ -107,6 +107,10 @@ class App(customtkinter.CTk):
         elif generation_type == "custom":
             self.pattern_search_label.configure(text="Enter keywords to search")
             self.pattern_search_button.configure(text="Search")
+        # Empty Keywords and its data
+        for i in range(len(self.keywords)):
+            self.destroy_keyword_row(self.keywords[i])
+        self.keywords = []
 
 
     def reset_progressbar(self):
@@ -150,6 +154,13 @@ class App(customtkinter.CTk):
                 )
                 self.keyword_list[keyword] = keyword_data
 
+    def tag_first_valid_keyword(self):
+        if len(self.keywords) > 0:
+            for keyword in self.keywords:
+                keyword_data = self.keyword_list[keyword]
+                if keyword_data["total"] > 0:
+                    self.tag_textarea(keyword_data)
+                    break
 
     def search_keyword_in_txtarea(self):
         """Search for a given keyword in textarea .
@@ -164,28 +175,34 @@ class App(customtkinter.CTk):
                 keyword_data["total"]
             )
             self.keyword_list[keyword] = keyword_data
-        
-        if len(self.keywords) > 0:
-            for keyword in self.keywords:
-                keyword_data = self.keyword_list[keyword]
-                if keyword_data["total"] > 0:
-                    self.tag_textarea(keyword_data)
-                    break
-            pass
+        self.tag_first_valid_keyword()
+
 
     def generate_keyword_row(self, textval, lkeyword):
+        print("Generating: " + lkeyword)
         label = customtkinter.CTkLabel(self.pattern_result_frame, text=textval)
         label.grid(row=self.total_keywords, sticky="w")
         label.bind("<Button-1>", lambda event: self.tag_textarea(self.keyword_list[lkeyword]))
         count = customtkinter.CTkLabel(self.pattern_result_frame, text="")
         count.grid(row=self.total_keywords, column=1)
-        button = customtkinter.CTkButton(self.pattern_result_frame, text="x", width=10, corner_radius=2, fg_color="transparent", text_color=("blue"))
+        button = customtkinter.CTkButton(self.pattern_result_frame, text="x", width=10, corner_radius=2, fg_color="transparent", text_color=("blue"), command=lambda : self.destroy_keyword_row(lkeyword, True))
         button.grid(row=self.total_keywords, column=2, pady=5, sticky="e")
         self.keyword_elements[lkeyword] = {
             "label": label,
             "count": count,
             "button": button
         }
+
+    def destroy_keyword_row(self, keyword, single=False):
+        keyword = keyword.lower()
+        element = self.keyword_elements[keyword]
+        element["label"].destroy()
+        element["count"].destroy()
+        element["button"].destroy()
+        del self.keyword_elements[keyword]
+        del self.keyword_list[keyword]
+        if single:
+            self.keywords.remove(keyword)
 
     def search_for_keyword(self, generation_type, keyword):
         if generation_type == "custom":
@@ -202,10 +219,12 @@ class App(customtkinter.CTk):
                     self.total_keywords += 1
                     self.keywords.append(lkeyword)
                     self.generate_keyword_row(textval, lkeyword)
-                    print(self.keyword_elements)
-                    self.on_search_button_click(lkeyword)
+                self.on_search_button_click(lkeyword)
 
         elif generation_type == "auto":
+            for i in range(len(self.keywords)):
+                self.destroy_keyword_row(self.keywords[i])
+            self.keywords = []
             self.generate_keywords()
             pass
 
@@ -222,7 +241,6 @@ class App(customtkinter.CTk):
         rake.extract_keywords_from_text(big_text)
         keywords = rake.get_ranked_phrases()
         keywords = set([keyword for keyword in keywords if len(keyword.split()) == max_keywords])
-        # self.keywords = keywords
 
         # Loop 1 - Find repetition time of keywords
         topkeys = {}
@@ -232,12 +250,9 @@ class App(customtkinter.CTk):
 
             # Add keyword data to topkeywords
             total = keyword_data["total"]
-            # print(total)
             if total not in topkeys:
-            # if topkeys[total] == None:
                 topkeys[total] = []
             topkeys[total].append(keyword_data)
-            # print(topkeys[total])
 
         # Identify keywords based on number of times its appearing in text
         topkeys_array = []
@@ -257,7 +272,7 @@ class App(customtkinter.CTk):
             if topkey_array:
                 for topkeyword in topkey_array:
                     if count < self.MAX_KEYWORDS:
-                        self.top_keywords.append(topkeyword)
+                        # self.top_keywords.append(topkeyword)
                         # Search the keyword in entire text and update tags
                         keyword = topkeyword["keyword"]
                         self.search_for_keyword("custom", keyword)
@@ -268,11 +283,11 @@ class App(customtkinter.CTk):
                             keyword_data["total"]
                         )
                         self.keyword_list[keyword] = keyword_data
-
                         count += 1
                     else:
                         break
- 
+
+        self.tag_first_valid_keyword()
 
     def search_pattern_in_text(self, keyword):
         """Search for text in the notepad .
