@@ -1,0 +1,5 @@
+https://us.shein.com/Women-Beachwear-c-2039.html
+Create a script code that needs to have the following functions
+1. Read the product information on the specified page until the last page, export it to a table, including product link, product name, price, SKC, store name, number of reviews.
+2. Log in to your account, and click the collection for the products on the specified page, until the last page.
+3. Read the information on the collection page and export it to a table, including product link, product name, price, SKC, store name, and product collection number, number of reviews.
