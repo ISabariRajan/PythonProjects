@@ -70,14 +70,17 @@ def get_items_from_page(soup):
 
 
 def capture_page_as_soup(driver, **kwargs):
-    url = kwargs["url"]
-    print(f"Capturing page: {url}")
-    driver.get(url)
-    selenium.WebDriverWait(driver, 10)
-    soup = selenium.convert_webpage_to_soup(driver)
-    pages.append(soup)
-    future = pool.submit(get_items_from_page, (soup))
-    futures.append(future)
+    try:
+        url = kwargs["url"]
+        print(f"Capturing page: {url}")
+        driver.get(url)
+        selenium.WebDriverWait(driver, 10).until(selenium.EC.presence_of_all_elements_located((selenium.By.CLASS_NAME, "sui-pagination__total")))
+        soup = selenium.convert_webpage_to_soup(driver)
+        pages.append(soup)
+        future = pool.submit(get_items_from_page, (soup))
+        futures.append(future)
+    except selenium.exceptions.TimeoutException:
+        capture_page_as_soup(driver, **kwargs)
 
 def get_pages_count(driver):
     url = base_url + sub_path
@@ -87,7 +90,7 @@ def get_pages_count(driver):
     return int(pages_count)
 
 def pick_item_info(pages_count):
-    with ThreadPoolExecutor(2) as pool:
+    with ThreadPoolExecutor(5) as pool:
         for i in range(1, int(pages_count) + 1):
             url = base_url + sub_path + query.format(i)
         # selenium.run_function_within_webdriver(capture_page_as_soup, url=url)
