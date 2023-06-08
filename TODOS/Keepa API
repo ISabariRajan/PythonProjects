@@ -1,0 +1,30 @@
+
+https://keepa.com/#!discuss/t/how-our-api-plans-work/410
+https://keepa.com/#!discuss/t/data-features-access-free-vs-monthly-subscription/5845
+
+If you're looking for a solution to monitor Amazon product categories using the Keepa API and receive notifications based on profitability, here's what we need:
+
+    Keepa API Account: Sign up for a Keepa API account. This will give you access to their product data and pricing information.
+
+    API Key: Obtain an API key from Keepa. The API key is a unique identifier that allows you to authenticate and access the Keepa API.
+    Keepa API plan starts from 49Euro(20 Token/Min ~ 892800 Token/ Month) to 4500Euro(4000 Token/ Min ~ 178,560,000 Token/Month) Per Month, We need to ensure the amount of token required for this script. Since it is going to run 24/7, Each request consume few tokens based on the type request. Free plans Restict many things and we can't more than 5 Items/ search.
+
+    Notification Platform: Choose a notification platform where you would like to receive notifications. In your case, you mentioned using Discord. Make sure you have an active Discord account.
+
+    Discord Webhook: Set up a webhook in your Discord server. A webhook is a URL provided by Discord that allows you to send messages and notifications to a specific channel.
+
+    Monitoring Criteria: Determine the specific product categories you want to monitor on Amazon. This could include electronics, books, fashion, or any other category of interest to you.
+
+    Profitability Threshold: Define the profitability threshold that you consider desirable. For example, you mentioned a profit greater than $1. This threshold will be used to determine when to send notifications.
+
+    Reliable Internet Connection: Ensure you have a stable and reliable internet connection to run the monitoring process continuously.
+
+    24/7 Execution: Ensure the monitoring process runs continuously without interruptions. This may involve running the script on a server or using a service that allows continuous execution. Either we can use a VPS or you local machine, If it can run 24/7. If you're thinking about power consumption and the script is not too complicated, we can run in RaspberryPi or some ARM machine which consume less energy.
+
+Once you have set up these elements, I can write a script that utilizes the Keepa API to fetch product data, calculate profitability, and send notifications to your Discord webhook when the profitability exceeds the defined threshold.
+
+By providing the necessary information and requirements , I will be able to create a solution tailored to your needs. We can discuss your requirements and preferences, such as the format of the notification message and any additional functionalities you may want.
+
+Remember to communicate your requirements clearly and work closely to ensure the solution meets your expectations and provides the desired functionality.
+
+I hope this provides you with a clear understanding of the elements required to monitor Amazon product categories using the Keepa API and receive notifications based on profitability. If you have any further questions or need additional assistance, please let me know!
