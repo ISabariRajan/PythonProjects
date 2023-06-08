@@ -1,0 +1,35 @@
+
+Need help getting my Python API around too many requests proxy
+Scripting & Automation
+Posted 5 days ago
+Worldwide
+After updating my python API there is a problem making calls to duckduckgo. I used duckduckgo instead of google because there was no proxy for too many requests.
+
+However, after updating, the DDG endpoint gets proxied if I make too many requests, so DDG returns a 403 error and doesn't give results. The one time I didn't get proxied, the response on render was never able to complete because it reached a timeout because execution was taking too long.
+
+I need help fixing this issue. Please send me your availability and experience dealing with this problem.
+
+$25.00
+Fixed-price
+
+    Intermediate
+    I am looking for a mix of experience and value
+
+    Project Type:  One-time project
+
+Skills and Expertise
+Python API Data Scraping
+Activity on this job
+
+    Proposals:
+
+Less than 5
+Last viewed by client:
+
+    4 days ago
+    Interviewing: 2
+    Invites sent: 0
+    Unanswered invites: 0
+    Hired 1 
+
+Upgrade your membership to see the bid range
